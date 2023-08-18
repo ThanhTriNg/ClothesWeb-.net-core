@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Views/Shared/_productLayout.cshtml";
+
+}
+
+@model List<Clothe>
+<!-- BEGIN PRODUCT LIST -->
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <!-- PRODUCT ITEM START -->
+        <div class="col-sm-3">
+            <div class="product-item">
+                <div class="pi-img-wrapper">
+                    @*<img src="assets/pages/img/products/@item.ClothesImg" class="img-responsive" alt="">*@
+                    <img src="~/customer/assets/pages/img/products/@item.ClothesImg" class="img-responsive" alt="@item.ClothesName">
+
+                    <div>
+                        @*<a href="assets/pages/img/products/@item.ClothesImg" class="btn btn-default fancybox-button">Zoom</a>*@
+                        <a href="~/customer/assets/pages/img/products/@item.ClothesImg" class="btn btn-default fancybox-button">Zoom</a>
+
+                        @Html.ActionLink("Chi tiết", "ProductDetail", "Customer", new { id = item.ClothesId }, new { @class = "btn btn-default fancybox-fast-view" })
+                    </div>
+                </div>
+                <h3 style="display:inline-block; height:50px  ">@item.ClothesName</h3>
+                <div class="pi-price">@item.ClothesPrice</div>
+                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+            </div>
+        </div>
+        <!-- PRODUCT ITEM END -->
+    }
+</div>
+<!-- END PRODUCT LIST -->

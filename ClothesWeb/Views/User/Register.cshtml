@@ -1,0 +1,102 @@
+﻿@{
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+
+}
+@model UserModel.RegisterModel
+<!--
+Author: Colorlib
+Author URL: https://colorlib.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Creative Colorlib SignUp Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <link href="~/customer/login/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //Custom Theme files -->
+    <!-- web font -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- //web font -->
+    @*<link href="~/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">*@
+    <link href="~/admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/admin/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+    @*D:\PhatTrienWeb\PTW_Nhom10\TestLogin\ClothesWeb\ClothesWeb\wwwroot\admin\lib\bootstrap\dist\css*@
+</head>
+<body>
+    <!-- main -->
+    <div class="main-w3layouts wrapper">
+        <h1>Đăng ký trở thành Thành viên của Super Shop</h1>
+        <div class="main-agileinfo">
+            <div class="agileits-top">
+                <form action="#" method="post">
+                    @using (Html.BeginForm("Register", "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.ValidationMessage("Register", new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+
+                        <div style="margin-top:15px">
+                            @Html.TextBoxFor(m => m.Name, new { @class = "", @type = "text", placeholder = "Tên" })
+                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div style="margin-top:15px">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "", @type = "text", placeholder = "Email" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div style="margin-top:15px">
+                            @Html.TextBoxFor(m => m.Adress, new { @class = "", @type = "text", placeholder = "Adress" })
+                            @Html.ValidationMessageFor(m => m.Adress, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div style="margin-top:15px">
+                            @Html.PasswordFor(m => m.Phone, new { @class = "", @type = "text", placeholder = "Số điện thoại" })
+                            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div style="margin-top:5px">
+                            @Html.PasswordFor(m => m.Password, new { @class = "", @type = "password", placeholder = "Mật khẩu" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div style="margin-top:15px">
+                            @Html.PasswordFor(m => m.CofirmPassword, new { @class = "", @type = "password", placeholder = "Nhập lại mật khẩu" })
+                            @Html.ValidationMessageFor(m => m.CofirmPassword, "", new { @class = "text-danger" })
+                        </div>
+
+                        <input type="submit" value="ĐĂNG KÝ">
+                    }
+                </form>
+                <p>Đã có tài khoản? <a href="~/user/index"> Đăng nhập ngay!</a></p>
+            </div>
+        </div>
+        <!-- copyright -->
+        <!-- //copyright -->
+        <ul class="colorlib-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <!-- //main -->
+</body>
+</html>

@@ -1,0 +1,202 @@
+﻿@{
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+
+}
+@model List<Clothe>
+
+
+<!-- BEGIN SLIDER -->
+<div class="page-slider margin-bottom-35">
+    <div id="carousel-example-generic" class="carousel slide carousel-slider">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <!-- First slide -->
+            <div class="item carousel-item-four active">
+                <div class="container">
+                    <div class="carousel-position-four text-center">
+                        <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown">
+                             <br /><span class="color-red-v2">Super Shop</span><br /> 
+                        </h2>
+                        <p class="carousel-subtitle-v2" data-animation="animated fadeInUp">
+                            Hãy tạo nên phong cách cho riêng bạn <br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- END SLIDER -->
+
+<div class="main">
+    <div class="container">
+        <!-- BEGIN SALE PRODUCT & NEW ARRIVALS -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN SALE PRODUCT -->
+            <div class="col-md-12 sale-product">
+                <h2>Sản phẩm mới</h2>
+                <div class="owl-carousel owl-carousel5">
+                    @foreach (var item in ViewBag.GetAllClothes as List<ClothesWeb.Models.Clothe>) 
+                    { 
+                    <div>
+                        <div class="product-item">
+                            <div class="pi-img-wrapper">
+                                <img src="~/customer/assets/pages/img/products/@item.ClothesImg" class="img-responsive" alt="@item.ClothesName">
+                                <div>
+                                    <a href="~/customer/assets/pages/img/products/@item.ClothesImg" class="btn btn-default fancybox-button">Zoom</a>
+
+                                    @Html.ActionLink("Chi tiết", "ProductDetail", "Customer", new { id = item.ClothesId }, new { @class = "btn btn-default fancybox-fast-view" })
+                                </div>
+                            </div>
+                            <h3 style="display:inline-block; height:50px  ">@item.ClothesName</h3>
+                            <div class="pi-price">@item.ClothesPrice</div>
+                            <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            <!-- END SALE PRODUCT -->
+        </div>
+        <!-- END SALE PRODUCT & NEW ARRIVALS -->
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40 ">
+            <!-- BEGIN SIDEBAR -->
+            <div class="sidebar col-md-3 col-sm-4">
+                <ul class="list-group margin-bottom-25 sidebar-menu">
+
+                    <li class="list-group-item clearfix dropdown">
+                        <a href="shop-product-list.html">
+                            <i class="fa fa-angle-right"></i>
+                            Áo
+                        </a>
+                        <ul class="dropdown-menu">
+                            @foreach (var item in ViewBag.GetCategoryTop as List<ClothesWeb.Models.Category>)
+                            {
+                                <li><a href="~/customer/bottom"><i class="fa fa-angle-right"></i> @item.CategoryName</a></li>
+                            }
+                        </ul>
+                    </li>
+
+                    <li class="list-group-item clearfix dropdown">
+                        <a href="shop-product-list.html">
+                            <i class="fa fa-angle-right"></i>
+                            Quần
+                        </a>
+                        <ul class="dropdown-menu">
+                            @foreach (var item in ViewBag.GetCategoryBottom as List<ClothesWeb.Models.Category>)
+                            {
+                                <li><a href="~/customer/bottom"><i class="fa fa-angle-right"></i> @item.CategoryName</a></li>
+                            }
+                        </ul>
+                    </li>
+
+                    @*<li class="list-group-item clearfix dropdown">
+                        <a href="shop-product-list.html">
+                            <i class="fa fa-angle-right"></i>
+                            Phụ kiện
+                        </a>
+                        <ul class="dropdown-menu">
+                            @foreach (var item in ViewBag.GetCategoryAccessories as List<ClothesWeb.Models.Category>)
+                            {
+                                <li><a href="~/customer/bottom"><i class="fa fa-angle-right"></i> @item.CategoryName</a></li>
+                            }
+                        </ul>
+                    </li>*@
+
+                </ul>
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-9 col-sm-8">
+                <h2>3 Sản Phẩm</h2>
+                <div class="owl-carousel owl-carousel3">
+                    @foreach (var item in ViewBag.Get9Clothes as List<ClothesWeb.Models.Clothe>) { 
+                    <div>
+                        <div class="product-item">
+                            <div class="pi-img-wrapper">
+                                <img src="~/customer/assets/pages/img/products/@item.ClothesImg" class="img-responsive" alt="@item.ClothesName">
+                                <div>
+                                    <a href="~/customer/assets/pages/img/products/@item.ClothesImg" class="btn btn-default fancybox-button">Zoom</a>
+                                    @Html.ActionLink("Chi tiết", "ProductDetail", "Customer", 
+                                   new { id = item.ClothesId }, 
+                                   new { @class = "btn btn-default fancybox-fast-view" })
+                                </div>
+                            </div>
+                            <div class="pi-price">@item.ClothesPrice VND</div>
+                            <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                            <div class="sticker sticker-new"></div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+        <!-- BEGIN TWO PRODUCTS & PROMO -->
+        <div class="row margin-bottom-35 ">
+            <!-- BEGIN TWO PRODUCTS -->
+            <div class="col-md-6 two-items-bottom-items">
+                <h2>2 Sản Phẩm</h2>
+                <div class="owl-carousel owl-carousel2">
+                    @foreach (var item in ViewBag.Get9Clothes as List<ClothesWeb.Models.Clothe>)
+                    {
+                        <div>
+                            <div class="product-item">
+                                <div class="pi-img-wrapper">
+                                    <img src="~/customer/assets/pages/img/products/@item.ClothesImg" class="img-responsive" alt="@item.ClothesName">
+                                    <div>
+                                        <a href="~/customer/assets/pages/img/products/@item.ClothesImg" class="btn btn-default fancybox-button">Zoom</a>
+                                        @Html.ActionLink("Chi tiết", "ProductDetail", "Customer", new { id = item.ClothesId }, new { @class = "btn btn-default fancybox-fast-view" })
+                                    </div>
+                                </div>
+                                <div class="pi-price">@item.ClothesPrice VND</div>
+                                <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                                <div class="sticker sticker-new"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- END TWO PRODUCTS -->
+            <!-- BEGIN PROMO -->
+            <div class="col-md-6 shop-index-carousel">
+                <div class="content-slider">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="~/customer/assets/pages/img/index-sliders/slide1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                            </div>
+                            <div class="item">
+                                <img src="~/customer/assets/pages/img/index-sliders/slide2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                            </div>
+                            <div class="item">
+                                <img src="~/customer/assets/pages/img/index-sliders/slide3.jpg" class="img-responsive" alt="Berry Lace Dress">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PROMO -->
+        </div>
+        <!-- END TWO PRODUCTS & PROMO -->
+    </div>
+</div>
+

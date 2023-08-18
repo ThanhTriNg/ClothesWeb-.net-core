@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+
+}
+<div class="title-wrapper">
+    <div class="container">
+        <div class="container-inner">
+            <h1><span>Sản phẩm </span>@ViewBag.Title</h1>
+            <em>@ViewBag.Subtitle</em>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="">Store</a></li>
+            <li class="active">Men category</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN SIDEBAR -->
+           @Html.Partial("_SidebarPartialView.cshtml")
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-9 col-sm-7">
+                
+                @RenderBody()
+
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+    </div>
+</div>

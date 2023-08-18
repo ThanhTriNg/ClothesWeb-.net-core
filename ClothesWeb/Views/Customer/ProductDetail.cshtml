@@ -1,0 +1,143 @@
+﻿@{
+    Layout = "~/Views/Shared/_productDetailLayout.cshtml";
+
+}
+
+@model ClothesWeb.Models.Clothe
+
+<!-- BEGIN CONTENT -->
+<div class="col-md-9 col-sm-7">
+    <div class="product-page">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="product-main-image">
+                    <img src="~/customer/assets/pages/img/products/@Model.ClothesImg" class="img-responsive">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <h1>@Model.ClothesName</h1>
+                <div class="price-availability-block clearfix">
+                    <div class="price">
+                        <strong>@Model.ClothesPrice VND</strong>
+                    </div>
+                    <div class="availability">
+                        Trạng thái: <strong>Còn hàng</strong>
+                    </div>
+                </div>
+                <div class="description">
+                    <p>
+                        @Model.ClothesDescription
+                    </p>
+                </div>
+                <div class="product-page-options">
+                    <div class="pull-left">
+                        <label class="control-label">Kích cỡ:</label>
+                        <select class="form-control input-sm">
+                            <option>L</option>
+                            <option>M</option>
+                            <option>XL</option>
+                        </select>
+                    </div>
+                    <div class="pull-left">
+                        <label class="control-label">Màu sắc:</label>
+                        <select class="form-control input-sm">
+                            <option>Red</option>
+                            <option>Blue</option>
+                            <option>Black</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="product-page-cart">
+
+                    @using (Html.BeginForm("AddToCart", "Customer", FormMethod.Post))
+                    {
+                        <div class="product-quantity">
+                            @Html.HiddenFor(m => m.ClothesId)
+                            @Html.TextBox("SiQty", "1", new { @class = "form-control input-sm" })
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Add to cart</button>
+                    }
+
+                </div>
+
+
+                <ul class="social-icons">
+                    <li><a class="facebook" data-original-title="facebook" href="javascript:;"></a></li>
+                    <li><a class="twitter" data-original-title="twitter" href="javascript:;"></a></li>
+                    <li><a class="googleplus" data-original-title="googleplus" href="javascript:;"></a></li>
+                    <li><a class="evernote" data-original-title="evernote" href="javascript:;"></a></li>
+                    <li><a class="tumblr" data-original-title="tumblr" href="javascript:;"></a></li>
+                </ul>
+            </div>
+
+            <div class="product-page-content">
+                <ul id="myTab" class="nav nav-tabs">
+                    <li><a href="#Description" data-toggle="tab">Mô tả</a></li>
+                    <li class="active"><a href="#Reviews" data-toggle="tab">Đánh giá</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    @*Tab Mô tả*@
+                    <div class="tab-pane fade" id="Description">
+                        <p>@Model.ClothesDescription</p>
+                    </div>
+
+                    @*Tab Đánh Giá*@
+                   
+                <div class="tab-pane fade in active" id="Reviews">
+                    <!--<p>There are no reviews for this product.</p>-->
+                    @foreach (var item in ViewBag.GetReview as List<ClothesWeb.Models.Review>)
+                    {
+                        <div class="review-item clearfix">
+                            <div class="review-item-submitted">
+                                <strong>@item.GuestName</strong>
+                                <em>13/12/2013 - 17:49</em>
+                                <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                            </div>
+                            <div class="review-item-content">
+                                <p> @item.ReviewsContent</p>
+                            </div>
+                        </div>
+                    }
+
+
+                    @ViewBag.review_null
+
+                    <!-- BEGIN FORM-->
+                    @using (Html.BeginForm("SaveReview", "Customer", FormMethod.Post))
+                    {
+                        @ViewBag.test
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(m => m.ClothesId)
+                        <form action="#" class="reviews-form" role="form">
+                            <h2>Để lại đánh giá của bạn</h2>
+                            <div class="form-group">
+                                <label for="name">Họ và tên <span class="require">*</span></label>
+                                @Html.TextBox("GuestName", "", new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                @Html.TextBox("Email", "", new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label for="review">Đánh giá của bạn<span class="require">*</span></label>
+                                @Html.TextBox("ReviewsContent", "", new { @class = "form-control" })
+                            </div>
+                            <div class="padding-top-20">
+                                <button type="submit" class="btn btn-primary">Gửi</button>
+                            </div>
+                        </form>
+                    }
+
+                    <!-- END FORM-->
+
+                </div>
+                </div>
+            </div>
+
+            <div class="sticker sticker-sale"></div>
+        </div>
+    </div>
+</div>
+<!-- END CONTENT -->

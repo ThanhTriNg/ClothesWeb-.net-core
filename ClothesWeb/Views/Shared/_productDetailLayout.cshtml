@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+
+}
+
+<div class="main">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="">Store</a></li>
+            <li class="active">Cool green dress with red bell</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN SIDEBAR -->
+            @Html.Partial("_SidebarPartialView.cshtml")
+            <!-- END SIDEBAR -->
+            @RenderBody()
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+
+        <!-- BEGIN SIMILAR PRODUCTS -->
+        <div class="row margin-bottom-40">
+            <div class="col-md-12 col-sm-12">
+                <h2>Sản phẩm phổ biến</h2>
+                <div class="owl-carousel owl-carousel4">
+                 @Html.Partial("_productPopularPartialView")
+                </div>
+            </div>
+        </div>
+        <!-- END SIMILAR PRODUCTS -->
+    </div>
+</div>
